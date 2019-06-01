@@ -23,10 +23,7 @@ class Pool2x2:
     def max_pool(self, input):
         h, w, num_filters = input.shape
         output = np.zeros((h // 2, w // 2, num_filters), np.int32)
-        print(output)
         for im_region, i, j in self.correct_iterate_regions(input):
-            print(im_region)
-            print()
             output[i, j] = np.amax(im_region, axis=(0, 1))
         return output
 

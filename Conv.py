@@ -15,11 +15,11 @@ class Conv3x3:
                 im_region = image[i:(i + 3), j:(j + 3)]
                 yield im_region, i, j
 
-    def forward(self, input):
-        h, w = input.shape
+    def forward(self, inputs):
+        h, w = inputs.shape
         output = np.zeros((h - 2, w - 2, self.num_filters))
 
-        for im_region, i, j in self.iterate_regions(input):
+        for im_region, i, j in self.iterate_regions(inputs):
             output[i, j] = np.sum(im_region * self.filters, axis=(1, 2))
         return output
 
